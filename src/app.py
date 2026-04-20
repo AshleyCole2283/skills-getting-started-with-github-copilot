@@ -19,7 +19,7 @@ current_dir = Path(__file__).parent
 app.mount("/static", StaticFiles(directory=os.path.join(Path(__file__).parent,
           "static")), name="static")
 
-# In-memory activity database
+# In-memory activity databaseactivities,
 activities = {
     "Chess Club": {
         "description": "Learn strategies and compete in chess tournaments",
@@ -38,6 +38,30 @@ activities = {
         "schedule": "Mondays, Wednesdays, Fridays, 2:00 PM - 3:00 PM",
         "max_participants": 30,
         "participants": ["john@mergington.edu", "olivia@mergington.edu"]
+    },
+    "Basketball Club": {
+        "description": "Practice basketball skills and play games",
+        "schedule": "Tuesdays and Thursdays, 4:00 PM - 5:30 PM",
+        "max_participants": 15,
+        "participants": []
+    },
+    "Soccer Team": {
+        "description": "Train for soccer matches and improve teamwork",
+        "schedule": "Mondays and Wednesdays, 3:00 PM - 4:30 PM",
+        "max_participants": 22,
+        "participants": []
+    },
+    "Art Club": {
+        "description": "Explore various art forms and create masterpieces",
+        "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
+        "max_participants": 10,
+        "participants": []
+    },
+    "Music Club": {
+        "description": "Learn to play instruments and perform music",
+        "schedule": "Fridays, 4:00 PM - 5:30 PM",
+        "max_participants": 15,
+        "participants": []
     }
 }
 
@@ -62,6 +86,6 @@ def signup_for_activity(activity_name: str, email: str):
     # Get the specific activity
     activity = activities[activity_name]
 
-    # Add student
+    # Validate student is not already signed up    if email in activity["participants"]:
     activity["participants"].append(email)
     return {"message": f"Signed up {email} for {activity_name}"}
